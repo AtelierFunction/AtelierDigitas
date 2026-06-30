@@ -1875,26 +1875,8 @@
       }
 
       function drawAngleArc(originScreen, baseScreen, lineScreen) {
-        const distToBase = Math.hypot(baseScreen.x - originScreen.x, baseScreen.y - originScreen.y);
-        const distToLine = Math.hypot(lineScreen.x - originScreen.x, lineScreen.y - originScreen.y);
-        const usableDistance = Math.min(distToBase, distToLine);
-        if (!Number.isFinite(usableDistance) || usableDistance < 4) return;
-
-        // V44: o arco continua aparecendo mesmo quando o triângulo fica pequeno.
-        // Nesses casos, ele é reduzido proporcionalmente para evitar sobreposição com Δx/Δy.
-        const radius = Math.max(7, Math.min(36, usableDistance * 0.38));
-        const startAngle = Math.atan2(baseScreen.y - originScreen.y, baseScreen.x - originScreen.x);
-        const endAngle = Math.atan2(lineScreen.y - originScreen.y, lineScreen.x - originScreen.x);
-        const anticlockwise = endAngle < startAngle;
-        ctx.save();
-        ctx.strokeStyle = "#d6296b";
-        ctx.lineWidth = usableDistance < 30 ? 2 : 2.5;
-        ctx.setLineDash([]);
-        ctx.beginPath();
-        ctx.arc(originScreen.x, originScreen.y, radius, startAngle, endAngle, anticlockwise);
-        ctx.stroke();
-        ctx.restore();
-      }
+        return; // V63: arco do ângulo removido por solicitação.
+    }
 
       function formatEquation(a, b) {
         const aa = displayZero(normalizeZero(a));
